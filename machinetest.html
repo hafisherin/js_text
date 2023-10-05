@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark list</title>
+    <link rel="stylesheet" href="bst/css/bootstrap.min.css">
+    <style>
+        table{
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+        td,th{
+             border: 0.5px solid black;
+             text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h2 class="text-center mt-5">MARK LIST</h2>
+            <div class="text-center mt-4">
+                <div>
+                    <label for="" >ROLL NO :</label>
+                    <input type="text" id="roll">
+                </div>
+                <div>
+                    <label for="" class="mt-4">Maths :</label>
+                    <input type="number" id="maths">
+                </div>
+                <div>
+                    <label for="" class="mt-4">Chemistry :</label>
+                    <input type="number" id="chem">
+                </div>
+                <div>
+                    <label for="" class="mt-4">Physics :</label>
+                    <input type="number" id="phy">
+                </div>
+                <div>
+                    <label for="" class="mt-4">Biology :</label>
+                    <input type="number" id="bio">
+                </div>
+                <div>
+                    <button class="text-center mt-4 bg-dark text-light" onclick="enter()">Enter</button>
+                </div>
+                <!-- <div>
+                    <button>Edit</button>
+                    <button>delete</button>
+                    
+                </div> -->
+            </div>
+        </div>
+        <table id="table" class="table table-striped mt-5">
+            <tr>
+                <th>ROLL NO</th>
+                <th>Maths</th>
+                <th>Chemistry</th>
+                <th>Physics</th>
+                <th>Biology</th>
+                <th>status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <!-- <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="status"></td>
+                <td><button>Edit</button></td>
+                <td><button>Delete</button></td>
+            </tr> -->
+        </table>
+    </div>
+
+
+    <script>
+      var i = 1;
+      function enter(){
+        var rollno = document.getElementById('roll').value
+        var maths = document.getElementById('maths').value
+        var Chemistry = document.getElementById('chem').value
+        var Physics = document.getElementById('phy').value
+        var Biology = document.getElementById('bio').value
+
+        var newRow = table.insertRow();
+        newRow.setAttribute('id', i)
+            var rollNo = newRow.insertCell();
+            var mathSub = newRow.insertCell();
+            var chemSub = newRow.insertCell();
+            var phySub = newRow.insertCell(); 
+            var bioSub = newRow.insertCell();
+            var status = newRow.insertCell();
+            var edit_col = newRow.insertCell();
+            var delete_col = newRow.insertCell();
+
+    //  if(mathSub > 100 || chemSub > 100 || phySub > 100 || bioSub > 100 ){
+    //     alert(" please enter correct value");
+    //  }
+    //   else {
+    //     var obtain = mathSub + chemSub + phySub + bioSub;
+    //     document.getElementById
+    //   }
+
+
+        // let math_sub = document.getElementById("math_sub");
+        // let chem_sub = document.getElementById('chem_sub');
+        // let phy_sub = document.getElementById("phy_sub");
+        // let bio_sub = document.getElementById('bio_sub');    
+        
+       
+
+           rollNo.innerHTML = rollno;
+           mathSub.innerHTML = maths;
+           chemSub.innerHTML = Chemistry;
+           phySub.innerHTML = Physics;
+           bioSub.innerHTML = Biology;
+
+           
+           if (maths > 45 && Chemistry > 45 && Physics > 45 && Biology> 45 ){
+              alert('Eligible for higher studies')
+              status.innerHTML = "pass";
+              status.style.color = "green"
+            //   document.getElementById("").innerHTML = "Pass"; 
+           }
+           else{
+            alert ('Not eligible') 
+            // document.getElementById("").innerHTML = "Fail"; 
+            status.innerHTML = ' Fail';
+            status.style.color = "red"
+
+           }
+
+           var edit_btn = document.createElement("BUTTON");
+            edit_btn.innerHTML = "EDIT";
+            edit_btn.style.color = "white";
+            edit_btn.style.backgroundColor = "black"
+
+            edit_btn.setAttribute("data-toggle", "modal")
+            edit_btn.setAttribute("data-toggle", "modal", "#myModal")
+            edit_btn.addEventListener('click', function handleEdit(event) {
+                var editId = event.target.parentElement.parentElement.id;
+                var editList = document.getElementById(editId).childNodes
+                console.log(editList);
+                document.getElementById("edit_task").value = editList[1].innerHTML;
+                document.getElementById("edit_desc").value = editList[2].innerHTML;
+            })
+            edit_col.appendChild(edit_btn);
+
+           var delete_btn = document.createElement("button");
+            delete_btn.innerHTML = "DELETE";
+            delete_btn.style.color = "white";
+            delete_btn.style.backgroundColor = "black"
+
+            delete_btn.addEventListener("click", function handleDelete(event) {
+                var delId = event.target.parentElement.parentElement.id;
+                var delRow = document.getElementById(delId);
+                delRow.remove()
+            })
+            delete_col.appendChild(delete_btn);
+      }
+    </script>
+</body>
+</html>
